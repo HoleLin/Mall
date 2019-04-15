@@ -18,8 +18,9 @@ public class Const {
 		int ROLE_CUSTOMER = 0;
 		// 管理员
 		int ROLE_ADMIN = 1;
-
 	}
+
+
 
 
 }
