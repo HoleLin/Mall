@@ -57,7 +57,7 @@ public class UserServiceImpl implements IUserService {
 		// MD5加密
 		user.setPassword(MD5Util.MD5EncodeUtf8(user.getPassword()));
 		int resultCount = mUserMapper.insert(user);
-		if(resultCount == 0){
+		if (resultCount == 0) {
 			return ServerResponse.createByErrorMessage("注册失败");
 		}
 		return ServerResponse.createBySuccessMessage("注册成功");
@@ -184,4 +184,21 @@ public class UserServiceImpl implements IUserService {
 		user.setPassword(StringUtils.EMPTY);
 		return ServerResponse.createBySuccess(user);
 	}
+
+	// backend
+
+	/**
+	 * 校验是否是管理员
+	 * @param user
+	 * @return
+	 */
+	@Override
+	public ServerResponse checkAdminRole(User user) {
+		if (user != null && user.getRole() == Const.Role.ROLE_ADMIN) {
+			return ServerResponse.createBySuccess();
+		} else {
+			return ServerResponse.createByError();
+		}
+	}
+
 }
